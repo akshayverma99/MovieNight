@@ -10,6 +10,7 @@ import Foundation
 
 enum movieRequest{
     case genre
+    case movies
 }
 
 enum responseType{
@@ -22,9 +23,15 @@ class MovieNetworkHandler{
     
     /// Retrieves the appropriate data for each request
     func getData(for request: movieRequest, completionHandler: @escaping (responseType)->Void){
-        if request == .genre{
+        
             do{
-                let url = try URLCreator.getGenreUrl()
+                var url: URL
+                
+                switch request{
+                case .genre: url = try URLCreator.getGenreUrl()
+                case .movies: url = try URLCreator.getUrlForMutualMovies()
+                }
+                
                 URLSession.shared.dataTask(with: url){ data, response, error in
                     
                     // Returns the error, if there isnt an error, it returns the data
@@ -41,7 +48,7 @@ class MovieNetworkHandler{
             }catch let error{
                 completionHandler(.error(error))
             }
-        }
+        
     }
     
 }

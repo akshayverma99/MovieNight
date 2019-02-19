@@ -10,6 +10,8 @@ import Foundation
 
 class URLCreator{
     
+    private static let baseImageUrl = "https://image.tmdb.org/t/p/"
+    private static let imageSize = "w154"
     private static let baseUrl = "https://api.themoviedb.org/3"
     private static let apiKey = "3b411bd061b0f06b06a59da5d2c77d2d"
     private static let genre = "/genre/movie/list"
@@ -50,6 +52,12 @@ class URLCreator{
     }
     
     
-    
+    static func getImageUrl(ending: String) throws -> URL{
+        if let url = URL(string: "\(baseImageUrl)\(imageSize)\(ending)"){
+            return url
+        }else{
+            throw NetworkingErrors.invalidURL
+        }
+    }
     
 }

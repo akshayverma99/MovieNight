@@ -13,8 +13,8 @@ enum selectedButton{
     case personTwo
 }
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
     @IBOutlet weak var PlayerOneButton: UIButton!
     @IBOutlet weak var PlayertwoButton: UIButton!
     @IBOutlet weak var MovieCollectionView: UICollectionView!
@@ -28,7 +28,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         setupViews()
         retrieveGenreData()
-        
+        MovieCollectionView.delegate = self
+        MovieCollectionView.dataSource = self
         }
     
     
@@ -139,6 +140,11 @@ class ViewController: UIViewController {
                 do{
                     DataHandler.addArrayOfMovies(try jsonDecoder.decode(arrayOfMovies.self, from: data).results)
                     print(DataHandler.getArrayOfMovies())
+                    
+                    DispatchQueue.main.async{
+                         self.MovieCollectionView.reloadData()
+                    }
+                
                 }catch let error{
                     DispatchQueue.main.async{
                         self.displayError(error: error)
@@ -150,6 +156,42 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return DataHandler.getArrayOfMovies().count
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieTableViewCell
+        
+        let networkHandler = MovieNetworkHandler()
+        
+        if DataHandler.getArrayOfMovies().count > 0{
+            networkHandler.getData(for: .movieImage(DataHandler.getArrayOfMovies()[indexPath.row].image)){ response in
+                
+                switch response{
+                case .error(let error):
+                    
+                    DispatchQueue.main.async{
+                        self.displayError(error: error)
+                    }
+                case .data(let image):
+                    
+                    DispatchQueue.main.async{
+                        cell.imageView.image = UIImage(data: image)
+                    }
+                }
+                
+            }
+        }
+        
+        
+        return cell
     }
       
 }

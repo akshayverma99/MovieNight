@@ -25,20 +25,34 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="zDb-Wr-rCA"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tcr-od-r6c">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="tcr-od-r6c">
                                     <size key="itemSize" width="150" height="225"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="10" maxX="5" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="9Tr-Xo-pwE">
-                                        <rect key="frame" x="0.0" y="10" width="150" height="225"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="9Tr-Xo-pwE" customClass="MovieTableViewCell" customModule="MovieNight" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="12.666666666666666" width="150" height="225"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="225"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eid-ek-Ta0">
+                                                    <rect key="frame" x="8" y="8" width="134" height="209"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Eid-ek-Ta0" secondAttribute="bottom" id="28Z-tm-sGP"/>
+                                            <constraint firstItem="Eid-ek-Ta0" firstAttribute="top" secondItem="9Tr-Xo-pwE" secondAttribute="topMargin" id="7FJ-Ky-md9"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Eid-ek-Ta0" secondAttribute="trailing" id="bsa-aF-Zls"/>
+                                            <constraint firstItem="Eid-ek-Ta0" firstAttribute="leading" secondItem="9Tr-Xo-pwE" secondAttribute="leadingMargin" id="vMj-9L-0go"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="Eid-ek-Ta0" id="RiA-ZA-kHq"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -137,13 +151,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="MovieCollectionView" destination="VpK-C4-Nrd" id="xQk-am-gOp"/>
+                        <outlet property="MovieCollectionView" destination="VpK-C4-Nrd" id="5qA-SD-7x9"/>
                         <outlet property="PlayerOneButton" destination="hXE-ko-69x" id="cK4-fG-S6P"/>
                         <outlet property="PlayertwoButton" destination="vGj-d9-E0n" id="lEh-t0-F53"/>
                         <outlet property="viewOne" destination="6jM-gf-uF0" id="1PZ-12-sfv"/>
                         <outlet property="viewTwo" destination="an4-nU-Pd2" id="RNJ-3v-NkR"/>
                         <segue destination="7hd-wV-iKn" kind="show" identifier="GenreSelect" id="TcS-ho-G86"/>
-                        <segue destination="xGr-kt-ODm" kind="showDetail" id="TAF-8P-fvv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -231,88 +244,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Di-1r-z4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="881" y="133"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="nON-8M-uxT">
-            <objects>
-                <navigationController id="xGr-kt-ODm" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K1z-D2-5IY">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="zqF-7o-NMz" kind="relationship" relationship="rootViewController" id="tqw-ew-Zg8"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vhr-LG-Xh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="136" y="858"/>
-        </scene>
-        <!--Select your Preferred Genres-->
-        <scene sceneID="JHf-ve-Wus">
-            <objects>
-                <tableViewController id="zqF-7o-NMz" customClass="GenreTableViewController" customModule="MovieNight" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="ELr-9X-vcN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GenreCell" id="1RZ-o3-yHo" customClass="GenreTableViewCell" customModule="MovieNight" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="75"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1RZ-o3-yHo" id="POb-L9-ZG4">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="74.666666666666671"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ht8-GK-bnD">
-                                            <rect key="frame" x="20" y="11" width="58" height="53"/>
-                                            <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="58" id="1BO-wq-Ozt"/>
-                                            </constraints>
-                                            <state key="normal" image="1"/>
-                                            <state key="selected" image="2"/>
-                                            <connections>
-                                                <action selector="GenreButtonPressed:" destination="1RZ-o3-yHo" eventType="touchUpInside" id="Thi-zy-gUz"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgF-Pi-WVO">
-                                            <rect key="frame" x="108" y="19" width="80.666666666666686" height="36"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="ht8-GK-bnD" firstAttribute="top" secondItem="POb-L9-ZG4" secondAttribute="topMargin" id="4BY-SM-YIx"/>
-                                        <constraint firstItem="TgF-Pi-WVO" firstAttribute="centerY" secondItem="POb-L9-ZG4" secondAttribute="centerY" id="C7F-aG-x4D"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="ht8-GK-bnD" secondAttribute="bottom" id="EWz-Qa-Xcf"/>
-                                        <constraint firstItem="ht8-GK-bnD" firstAttribute="leading" secondItem="POb-L9-ZG4" secondAttribute="leadingMargin" id="ZCk-wp-CDT"/>
-                                        <constraint firstItem="TgF-Pi-WVO" firstAttribute="leading" secondItem="ht8-GK-bnD" secondAttribute="trailing" constant="30" id="ZaC-pN-sUZ"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="GenreLabel" destination="TgF-Pi-WVO" id="IAV-Bf-TBU"/>
-                                    <outlet property="GenreSelectButton" destination="ht8-GK-bnD" id="VjD-6g-e3p"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zqF-7o-NMz" id="kGH-W8-Rdo"/>
-                            <outlet property="delegate" destination="zqF-7o-NMz" id="a29-hh-8ZE"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Select your Preferred Genres" id="FTB-Gw-gfC">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="YKU-P9-USg">
-                            <connections>
-                                <action selector="doneButtonPressed:" destination="zqF-7o-NMz" id="2oJ-cK-kpt"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E7e-xE-MeO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="880" y="858"/>
         </scene>
     </scenes>
     <resources>

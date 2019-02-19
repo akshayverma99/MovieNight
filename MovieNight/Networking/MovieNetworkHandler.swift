@@ -11,6 +11,7 @@ import Foundation
 enum movieRequest{
     case genre
     case movies
+    case movieImage(String)
 }
 
 enum responseType{
@@ -30,6 +31,7 @@ class MovieNetworkHandler{
                 switch request{
                 case .genre: url = try URLCreator.getGenreUrl()
                 case .movies: url = try URLCreator.getUrlForMutualMovies()
+                case .movieImage(let urlEnding): url = try URLCreator.getImageUrl(ending: urlEnding)
                 }
                 
                 URLSession.shared.dataTask(with: url){ data, response, error in

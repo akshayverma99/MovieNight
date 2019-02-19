@@ -20,6 +20,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var MovieCollectionView: UICollectionView!
     @IBOutlet weak var viewOne: UIView!
     @IBOutlet weak var viewTwo: UIView!
+    @IBOutlet weak var blockerView: UIView!
     
     var buttonPressed: selectedButton = .personOne
     
@@ -30,20 +31,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         retrieveGenreData()
         MovieCollectionView.delegate = self
         MovieCollectionView.dataSource = self
-        }
+    }
+    
     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func setupViews(){
         viewOne.layer.cornerRadius = 15
         viewTwo.layer.cornerRadius = 15
         PlayerOneButton.layer.cornerRadius = 15
         PlayertwoButton.layer.cornerRadius = 15
+        blockerView.layer.cornerRadius = 15
     }
+    
     
     func retrieveGenreData(){
         let networkHandler = MovieNetworkHandler()
@@ -63,7 +67,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
             case .error(let error):
                 DispatchQueue.main.async{
-                self.displayError(error: error)
+                    self.displayError(error: error)
                 }
             }
             
@@ -139,12 +143,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             case .data(let data):
                 do{
                     DataHandler.addArrayOfMovies(try jsonDecoder.decode(arrayOfMovies.self, from: data).results)
-                    print(DataHandler.getArrayOfMovies())
                     
                     DispatchQueue.main.async{
-                         self.MovieCollectionView.reloadData()
+                        self.MovieCollectionView.reloadData()
+                        self.blockerView.isHidden = true
+                        
                     }
-                
+                    
                 }catch let error{
                     DispatchQueue.main.async{
                         self.displayError(error: error)
@@ -193,7 +198,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         return cell
     }
-      
+    
 }
 
 

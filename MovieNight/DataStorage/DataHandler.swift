@@ -38,6 +38,10 @@ class DataHandler{
         listOfMutualGenres.append(genre)
     }
     
+    static func resetMutualGenreArray(){
+        listOfMutualGenres = []
+    }
+    
     static func removeGenreFromMutual(_ genre: Genre){
         if listOfMutualGenres.count == 1{
             listOfMutualGenres.remove(at: 0)
@@ -100,6 +104,10 @@ class DataHandler{
     /// adds a genre to the list of chosen Genres
     static func addChosenGenre(_ genre: Genre){
         listOfChosenGenres.append(genre)
+    }
+    
+    static func resetChosenArray(){
+        listOfChosenGenres = []
     }
     
     /// Removes a given genre from the list of chosen Genres

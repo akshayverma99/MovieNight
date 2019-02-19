@@ -47,8 +47,8 @@ class MovieNetworkHandler{
                         return
                     }   
                 }.resume()
-            }catch let error{
-                completionHandler(.error(error))
+            }catch{
+                completionHandler(.error(NetworkingErrors.invalidURL))
             }
         
     }

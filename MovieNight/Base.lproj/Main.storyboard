@@ -21,7 +21,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VpK-C4-Nrd">
                                 <rect key="frame" x="10" y="69.5" width="300" height="250"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.23935199873096447" green="0.22738669959227209" blue="0.22964214501377314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="zDb-Wr-rCA"/>
                                 </constraints>
@@ -56,7 +56,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUj-63-kbT">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUj-63-kbT">
                                 <rect key="frame" x="10" y="70" width="300" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select A Person Below" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-hZ-3xt">
@@ -66,7 +66,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.98663546950000003" green="0.65356973380000005" blue="0.034298090140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.38845339420000002" blue="0.22022782269999999" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="IB3-hZ-3xt" secondAttribute="trailing" constant="5" id="0kk-j5-aqj"/>
                                     <constraint firstItem="IB3-hZ-3xt" firstAttribute="centerX" secondItem="aUj-63-kbT" secondAttribute="centerX" id="8ev-kQ-jdM"/>
@@ -152,6 +152,13 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="175" id="1Mh-WI-kiB"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3QK-A7-xId">
+                                <rect key="frame" x="16" y="31.5" width="37" height="30"/>
+                                <state key="normal" title="Retry"/>
+                                <connections>
+                                    <action selector="retryButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="azs-bB-ynW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -167,9 +174,11 @@
                             <constraint firstItem="xXv-ka-2sY" firstAttribute="top" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="bwE-da-F86"/>
                             <constraint firstAttribute="trailing" secondItem="K3o-Dr-SWq" secondAttribute="trailing" constant="10" id="kNr-dh-C1b"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VpK-C4-Nrd" secondAttribute="trailing" constant="10" id="mtK-Eo-1Lw"/>
+                            <constraint firstItem="3QK-A7-xId" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sHC-j6-Osh"/>
                             <constraint firstItem="aUj-63-kbT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="sUN-bg-Ife"/>
                             <constraint firstItem="VpK-C4-Nrd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="vSQ-FD-v5S"/>
                             <constraint firstItem="aUj-63-kbT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xXv-ka-2sY" secondAttribute="bottom" constant="10" id="wPj-d3-6aj"/>
+                            <constraint firstItem="3QK-A7-xId" firstAttribute="baseline" secondItem="xXv-ka-2sY" secondAttribute="baseline" id="xC2-bZ-hb6"/>
                             <constraint firstItem="K3o-Dr-SWq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="xYc-DW-Gqt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -177,8 +186,9 @@
                     <connections>
                         <outlet property="MovieCollectionView" destination="VpK-C4-Nrd" id="5qA-SD-7x9"/>
                         <outlet property="PlayerOneButton" destination="hXE-ko-69x" id="cK4-fG-S6P"/>
-                        <outlet property="PlayertwoButton" destination="vGj-d9-E0n" id="lEh-t0-F53"/>
+                        <outlet property="PlayerTwoButton" destination="vGj-d9-E0n" id="lEh-t0-F53"/>
                         <outlet property="blockerView" destination="aUj-63-kbT" id="hmw-T2-vL1"/>
+                        <outlet property="retryButton" destination="3QK-A7-xId" id="gUf-kr-kzb"/>
                         <outlet property="viewOne" destination="6jM-gf-uF0" id="1PZ-12-sfv"/>
                         <outlet property="viewTwo" destination="an4-nU-Pd2" id="RNJ-3v-NkR"/>
                         <segue destination="7hd-wV-iKn" kind="show" identifier="GenreSelect" id="TcS-ho-G86"/>

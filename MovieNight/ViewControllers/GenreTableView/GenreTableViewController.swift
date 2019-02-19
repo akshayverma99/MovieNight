@@ -22,6 +22,8 @@ class GenreTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Fills a bool array as large as the genres array
+        // we use it to keep track of what has been chosen
         DataHandler.fillSelectedBoolArray()
         
     }
@@ -34,13 +36,10 @@ class GenreTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
         switch DataHandler.currentStage {
         case .initialSelection: return DataHandler.getListOfGenres().count
         case .remainingSelection: return DataHandler.getChosenGenres().count
@@ -50,7 +49,7 @@ class GenreTableViewController: UITableViewController {
         }
     }
 
-    
+    // Fills the table view with either all the genres or the remaining genres
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GenreCell", for: indexPath) as! GenreTableViewCell
         
@@ -64,6 +63,7 @@ class GenreTableViewController: UITableViewController {
             }else{
                 cell.buttonSelected = false
             }
+            
         case .remainingSelection:
             cell.genre = (DataHandler.getChosenGenres())[indexPath.row]
             cell.GenreLabel.text = (DataHandler.getChosenGenres())[indexPath.row].name
@@ -73,15 +73,17 @@ class GenreTableViewController: UITableViewController {
             }else{
                 cell.buttonSelected = false
             }
-            default: print("Should not be able to reach, disable buttons")
+            
+            default:
+                print("Should not be able to reach, disable buttons")
         }
         
         return cell
-        
     }
     
     
-    
+    // Returns the user to the previous View controller and disables that users button
+    // if nothing was selected, the user is prompted to select a genre
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         if DataHandler.currentStage == .initialSelection{
             if DataHandler.getChosenGenres().count > 0{
@@ -90,8 +92,8 @@ class GenreTableViewController: UITableViewController {
                     previousVC.PlayerOneButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                     previousVC.PlayerOneButton.isEnabled = false
                 case .personTwo:
-                    previousVC.PlayertwoButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-                    previousVC.PlayertwoButton.isEnabled = false
+                    previousVC.PlayerTwoButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                    previousVC.PlayerTwoButton.isEnabled = false
                 }
                 DataHandler.currentStage = .remainingSelection
                 DataHandler.resetSelectedArray()
@@ -109,8 +111,8 @@ class GenreTableViewController: UITableViewController {
                     previousVC.PlayerOneButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                     previousVC.PlayerOneButton.isEnabled = false
                 case .personTwo:
-                    previousVC.PlayertwoButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-                    previousVC.PlayertwoButton.isEnabled = false
+                    previousVC.PlayerTwoButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                    previousVC.PlayerTwoButton.isEnabled = false
                 }
                 DataHandler.currentStage = .displayMovies
                 previousVC.updateMovies()

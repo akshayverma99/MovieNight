@@ -29,7 +29,8 @@ class GenreTableViewCell: UITableViewCell {
     }
     
     
-    
+    // Switches the users Button image and assigns the selected genres to an array
+    // and removes unselected genres from the array
     @IBAction func GenreButtonPressed(_ sender: UIButton) {
         
         // Going from true to false

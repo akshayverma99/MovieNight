@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 enum NetworkingErrors: Error {
     case invalidURL
 }

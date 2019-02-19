@@ -11,8 +11,5 @@ import UIKit
 class MovieTableViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
-    
-    var title: String = ""
-    
 
 }

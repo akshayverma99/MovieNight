@@ -53,6 +53,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4FC460AF221C81C60001BE53 /* DataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				4FEC68182219E6A40040684F /* DataHandler.swift */,
+			);
+			path = DataStorage;
+			sourceTree = "<group>";
+		};
+		4FC460B0221C81F50001BE53 /* CodableObjects */ = {
+			isa = PBXGroup;
+			children = (
+				4FEC68102219D56E0040684F /* Genre.swift */,
+				4F42D651221B4D3100AE67D8 /* Movie.swift */,
+			);
+			path = CodableObjects;
+			sourceTree = "<group>";
+		};
 		4FEC67F22219CB950040684F = {
 			isa = PBXGroup;
 			children = (
@@ -72,11 +89,10 @@
 		4FEC67FD2219CB950040684F /* MovieNight */ = {
 			isa = PBXGroup;
 			children = (
-				4FEC681D221A0AFE0040684F /* ViewControllers */,
 				4FEC67FE2219CB950040684F /* AppDelegate.swift */,
-				4FEC68162219E0380040684F /* Errors.swift */,
-				4FEC68182219E6A40040684F /* DataHandler.swift */,
+				4FEC681D221A0AFE0040684F /* ViewControllers */,
 				4FEC681A221A00E60040684F /* Networking */,
+				4FC460AF221C81C60001BE53 /* DataStorage */,
 				4FEC68022219CB950040684F /* Main.storyboard */,
 				4FEC68052219CB980040684F /* Assets.xcassets */,
 				4FEC68072219CB980040684F /* LaunchScreen.storyboard */,
@@ -88,10 +104,10 @@
 		4FEC681A221A00E60040684F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				4FEC68102219D56E0040684F /* Genre.swift */,
-				4F42D651221B4D3100AE67D8 /* Movie.swift */,
+				4FC460B0221C81F50001BE53 /* CodableObjects */,
 				4FEC68122219D62A0040684F /* MovieNetworkHandler.swift */,
 				4FEC68142219D7C30040684F /* UrlCreator.swift */,
+				4FEC68162219E0380040684F /* Errors.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";

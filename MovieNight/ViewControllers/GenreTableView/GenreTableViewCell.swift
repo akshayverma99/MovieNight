@@ -35,13 +35,12 @@ class GenreTableViewCell: UITableViewCell {
         
         // Going from true to false
         if buttonSelected == true{
+            
             buttonSelected = false
             guard let genre = genre else {return}
             
-            if DataHandler.currentStage == .initialSelection{
+            if DataHandler.currentStage == .initialSelection || DataHandler.currentStage == .remainingSelection{
                 DataHandler.removeChosenGenre(genre)
-            }else if DataHandler.currentStage == .remainingSelection{
-                DataHandler.removeGenreFromMutual(genre)
             }
             
             
@@ -50,10 +49,8 @@ class GenreTableViewCell: UITableViewCell {
             buttonSelected = true
             guard let genre = genre else {return}
             
-            if DataHandler.currentStage == .initialSelection{
+            if DataHandler.currentStage == .initialSelection || DataHandler.currentStage == .remainingSelection{
                 DataHandler.addChosenGenre(genre)
-            }else if DataHandler.currentStage == .remainingSelection{
-                DataHandler.addGenreToMutual(genre)
             }
             
             

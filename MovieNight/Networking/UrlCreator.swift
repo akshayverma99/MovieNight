@@ -39,11 +39,11 @@ class URLCreator{
         
         var placeHolder = "\(baseUrl)\(discover)\(apiBridge)\(apiKey)\(genreReqInfo)"
         
-        for index in 0...DataHandler.getListOfMutualGenres().count-1{
+        for index in 0...DataHandler.getChosenGenres().count-1{
             if index == 0{
-                placeHolder.append("\(DataHandler.getListOfMutualGenres()[0].id)")
+                placeHolder.append("\(DataHandler.getChosenGenres()[0].id)")
             }else{
-                placeHolder.append("\(and)\(DataHandler.getListOfMutualGenres()[index].id)")
+                placeHolder.append("\(and)\(DataHandler.getChosenGenres()[index].id)")
             }
         }
         

@@ -42,7 +42,7 @@ class GenreTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch DataHandler.currentStage {
         case .initialSelection: return DataHandler.getListOfGenres().count
-        case .remainingSelection: return DataHandler.getChosenGenres().count
+        case .remainingSelection: return DataHandler.getListOfGenres().count
         default:
             print("Should not be able to reach, disable buttons")
             return 0
@@ -53,8 +53,7 @@ class GenreTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GenreCell", for: indexPath) as! GenreTableViewCell
         
-        switch DataHandler.currentStage {
-        case .initialSelection:
+        if DataHandler.currentStage == .initialSelection || DataHandler.currentStage == .remainingSelection{
             cell.genre = (DataHandler.getListOfGenres())[indexPath.row]
             cell.GenreLabel.text = (DataHandler.getListOfGenres())[indexPath.row].name
             cell.index = indexPath.row
@@ -63,19 +62,6 @@ class GenreTableViewController: UITableViewController {
             }else{
                 cell.buttonSelected = false
             }
-            
-        case .remainingSelection:
-            cell.genre = (DataHandler.getChosenGenres())[indexPath.row]
-            cell.GenreLabel.text = (DataHandler.getChosenGenres())[indexPath.row].name
-            cell.index = indexPath.row
-            if (DataHandler.getSelectedArray())[indexPath.row]{
-                cell.buttonSelected = true
-            }else{
-                cell.buttonSelected = false
-            }
-            
-            default:
-                print("Should not be able to reach, disable buttons")
         }
         
         return cell
@@ -105,7 +91,7 @@ class GenreTableViewController: UITableViewController {
                 self.present(alertController, animated: false, completion: nil)
             }
         }else{
-            if DataHandler.getListOfMutualGenres().count > 0{
+            if DataHandler.getChosenGenres().count > 0{
                 switch DataHandler.buttonPressed{
                 case .personOne:
                     previousVC.PlayerOneButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)

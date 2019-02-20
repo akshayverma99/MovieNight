@@ -8,9 +8,18 @@
 
 import Foundation
 
-struct Genre: Codable {
+struct Genre: Codable, Equatable {
     var id: Int
     var name: String
+    
+    static func ==(lhs: Genre, rhs: Genre) -> Bool {
+        if lhs.id == rhs.id && lhs.name == rhs.name{
+            return true
+        }else{
+            return false
+        }
+    }
+    
 }
 
 struct ArrayOfGenre: Codable{

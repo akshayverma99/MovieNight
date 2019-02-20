@@ -13,7 +13,6 @@ class DataHandler{
     private static var selectedGenres: [Bool]  = []
     private static var listOfGenres: [Genre] = []
     private static var listOfChosenGenres: [Genre] = []
-    private static var listOfMutualGenres: [Genre] = []
     
     static var buttonPressed: selectedButton = .personOne
     static var currentStage: PhaseOfSelection = .initialSelection
@@ -26,39 +25,6 @@ class DataHandler{
     
     static func getArrayOfMovies() -> [Movie]{
         return arrayOfMovies
-    }
-    
-    // MARK: Mutual Genre Methods
-    
-    static func getListOfMutualGenres() -> [Genre]{
-        return listOfMutualGenres
-    }
-    
-    static func addGenreToMutual(_ genre: Genre){
-        listOfMutualGenres.append(genre)
-    }
-    
-    static func resetMutualGenreArray(){
-        listOfMutualGenres = []
-    }
-    
-    static func removeGenreFromMutual(_ genre: Genre){
-        if listOfMutualGenres.count == 1{
-            listOfMutualGenres.remove(at: 0)
-            return
-        }
-        
-        // Loops through all the genres and removes any that match the name
-        for index in 0...listOfChosenGenres.count-1{
-            
-            if listOfMutualGenres[index].name == genre.name{
-                listOfMutualGenres.remove(at: index)
-                
-                // prevents unneccessary looping + crashing due to the array shrinking
-                // due to the removal
-                return
-            }
-        }
     }
     
     // Mark: Bool Array Methods
@@ -102,8 +68,22 @@ class DataHandler{
     }
     
     /// adds a genre to the list of chosen Genres
-    static func addChosenGenre(_ genre: Genre){
-        listOfChosenGenres.append(genre)
+    static func addChosenGenre(_ addedGenre: Genre){
+        if listOfChosenGenres.count == 0{
+            listOfChosenGenres.append(addedGenre)
+            print(listOfChosenGenres)
+        }
+        
+        
+        // Ensures that no genre is added twice although everything still works
+        // even if they are, just saving a very tiny amount of space
+        for genre in listOfChosenGenres{
+            if genre == addedGenre{
+                return
+            }
+        }
+        listOfChosenGenres.append(addedGenre)
+
     }
     
     static func resetChosenArray(){

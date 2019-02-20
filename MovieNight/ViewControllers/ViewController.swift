@@ -185,7 +185,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     DispatchQueue.main.async{
                         if DataHandler.getArrayOfMovies().count == 0{
                             self.displayNoMovies()
-                            DataHandler.resetMutualGenreArray()
                             DataHandler.resetChosenArray()
                             DataHandler.currentStage = .initialSelection
                         }else{
